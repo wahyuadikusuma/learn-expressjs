@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
 
-const db = new Sequelize('auth_db','root','',{
+const db = new Sequelize('express_api','root','',{
     host: "localhost",
     dialect: "mysql",
     timezone: "+07:00"
