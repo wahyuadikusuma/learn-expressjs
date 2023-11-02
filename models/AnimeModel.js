@@ -29,6 +29,8 @@ const Anime = db.define('anime', {
     type: DataTypes.TEXT,
     allowNull: false,
   },
+},{
+  freezeTableName:true
 });
 
 export default Anime;
