@@ -13,8 +13,28 @@ export const getUsers = async(req,res) => {
     }
 }
 
+const isEmailUnique = async (email) => {
+    const existingUser = await Users.findOne({ email });
+    return !existingUser; // Return true if the email is unique, false if it already exists
+  };
+
 export const Register = async(req, res) => {
     const { name, email, password, confPassword } = req.body;
+
+    if (!name || !email || !password || !confPassword) {
+        return res.status(400).json({
+            msg: "Data tidak lengkap!"
+        })
+    }
+
+    // Check if the email is unique
+    const isUnique = await isEmailUnique(email);
+
+    if (!isUnique) {
+        return res.status(400).json({
+            msg: "Email sudah digunakan!"
+        });
+    }
 
     if(password !== confPassword) {
         return res.status(400).json({
