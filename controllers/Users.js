@@ -14,7 +14,7 @@ export const getUsers = async(req,res) => {
 }
 
 const isEmailUnique = async (email) => {
-    const existingUser = await Users.findOne({ email });
+    const existingUser = await Users.findOne({ where: { email }});
     return !existingUser; // Return true if the email is unique, false if it already exists
   };
 
